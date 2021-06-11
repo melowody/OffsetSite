@@ -46,7 +46,7 @@ function createResults(arr) {
 
 function displayResult(element) {
     var currText = $('#output-p').text();
-    $('#output-p').text(currText + `${element.name} | ${element.address} | ${element.params} | ${getType(element.type)}`);
+    $('#output-p').append(`${element.name} | ${element.address} | ${element.params} | ${getType(element.type)}<br />`);
 }
 
 function getType(type) {
