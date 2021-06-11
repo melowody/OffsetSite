@@ -1,4 +1,16 @@
+const sqlPromise = initSqlJs({
+    locateFile: file => `./${file}`
+});
+const dataPromise = fetch("./data/addresses.db").then(res => res.arrayBuffer());
+var db = undefined;
+
+async function init() {
+    const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
+    db = new SQL.Database(new Uint8Array(buf));
+}
+
 $(document).ready(function() {
+    init();
     $('#userin').on('input', function() {
         var dInput = this.value;
         getPHP(dInput)
@@ -12,13 +24,6 @@ $(document).ready(function() {
 });
 
 async function getPHP(dInput) {
-    const sqlPromise = initSqlJs({
-        locateFile: file => `./${file}`
-    });
-    const dataPromise = fetch("../data/addresses.db").then(res => res.arrayBuffer());
-    const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
-    const db = new SQL.Database(new Uint8Array(buf));
-
     var stmt = db.prepare("SELECT * FROM ADDRESSES WHERE NAME LIKE $name OR ADDRESS LIKE $name");
     stmt.bind({$name:`%${dInput}%`});
 
