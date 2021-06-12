@@ -10,7 +10,22 @@
 
 #left {
     width: 50%;
-    float: left;
+    height: 68%;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+#left2 {
+    position: relative;
+    max-height: 100%;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#left2::-webkit-scrollbar {
+    display: none;
 }
 
 #right {
@@ -43,7 +58,6 @@ input {
     font-family: 'Monaco';
     color: #909090;
     transition: all .25s;
-    overflow: visible;
     width: 100%;
     text-align: left;
 }

@@ -32,13 +32,13 @@ $(document).ready(function() {
 function generate(input) {
     getPHP(input)
             .then((phpOutput) => {
-                $('#left').html("");
+                $('#left3').html("");
                 createResults(phpOutput);
             });
 }
 
 async function getPHP(dInput) {
-    var stmt = db.prepare("SELECT * FROM ADDRESSES WHERE NAME LIKE $name OR ADDRESS LIKE $name");
+    var stmt = db.prepare("SELECT * FROM ADDRESSES WHERE NAME LIKE $name OR ADDRESS LIKE $name ORDER BY ADDRESS ASC;");
     stmt.bind({$name:`%${dInput}%`});
 
     var output = [];
@@ -78,7 +78,7 @@ function createResults(arr) {
 }
 
 function displayResult(element) {
-    $('#left').append(formatEntry(element));
+    $('#left3').append(formatEntry(element));
 }
 
 function formatEntry(element) {
@@ -106,16 +106,13 @@ $(document).on('click', function(e) {
     var btn = $(e.target);
     var className = btn.attr("class");
     if (className == "left-button") {
-        $('#right').show();
         var id = btn.attr("id");
-        var stmt = db.prepare("SELECT * FROM ADDRESSES WHERE ADDRESS IS $id");
+        var stmt = db.prepare("SELECT * FROM ADDRESSES WHERE ADDRESS IS $id;");
         stmt.bind({$id:id});
         if (stmt.step()) {
             var row = stmt.getAsObject();
             showRight(row.MD);
         }
-    } else if (!$("#right").get(0).contains(e.target)) {
-        $('#right').hide();
     }
 })
 
