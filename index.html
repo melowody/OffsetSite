@@ -5,22 +5,35 @@
             Offset Website for Geometry Dash
         </title>
 
+        <script src="https://unpkg.com/commonmark@0.29.3/dist/commonmark.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
         <script src='js/sql.js'></script>
         <script src="js/input.js"></script>
+        <link rel="stylesheet" title="Light" href="https://highlightjs.org/static/demo/styles/base16/atelier-cave-light.css" disabled="disabled">
+        <link rel="stylesheet" title="Dark" href="https://highlightjs.org/static/demo/styles/atom-one-dark.css">
+        <link rel="stylesheet" title="Light" href="css/light-theme.css" disabled="disabled" />
+        <link rel="stylesheet" title="Dark" href="css/dark-theme.css" />
     </head>
     <body>
-        <div style="text-align: center">
-            <h1>Balls</h1>
-        </div>
-        <br />
-        <div style="text-align: center">
-            <form>
-                <input type="text" id="userin" name="userin" placeholder="Address or Func" />
-            </form>
-        </div>
-        <div id="output">
-            <p id="output-p"></p>
+        <div id="page">
+            <div id="top">
+                <h1>GD Offsets</h1>
+                <br />
+                <form>
+                    <input type="text" id="userin" name="userin" placeholder="Address or Func" />
+                </form>
+                <br />
+                <hr style="background-color:#999;border: none;width: 50%;height: 2px;" />
+                <br />
+            </div>
+            <div id="left"></div>
+            <div id="right"></div>
+            <div id="footer">
+                <br />
+                <hr style="background-color:#999;border: none;width: 50%;height: 2px;" />
+                <button id="switch" onclick="switchTheme()"></button>
+            </div>
         </div>
     </body>
 </html>
